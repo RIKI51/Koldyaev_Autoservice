@@ -44,7 +44,7 @@ namespace Koldyaev_Autoservice
             {
                 errors.AppendLine("Укажите стоимость услуги");
             }
-            if(_currentServise.Discount == 0)
+            if (string.IsNullOrWhiteSpace(_currentServise.Discount.ToString())) 
             {
                 errors.AppendLine("Укажите скидку");
             }
