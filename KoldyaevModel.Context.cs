@@ -15,7 +15,6 @@ namespace Koldyaev_Autoservice
     
     public partial class Kollaev_АвтосервисEntities2 : DbContext
     {
-
         private static Kollaev_АвтосервисEntities2 _context;
 
         public static Kollaev_АвтосервисEntities2 GetContext()
