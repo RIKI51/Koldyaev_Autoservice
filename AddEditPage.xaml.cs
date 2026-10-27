@@ -48,7 +48,7 @@ namespace Koldyaev_Autoservice
             {
                 errors.AppendLine("Укажите скидку");
             }
-            if (string.IsNullOrWhiteSpace(_currentServise.DurationInSeconds))
+            if (_currentServise.DurationInSeconds == 0)
             {
                 errors.AppendLine("Укажите длительность услуги");
             }
@@ -60,13 +60,13 @@ namespace Koldyaev_Autoservice
 
             if (_currentServise.ID == 0)
             {
-                Kollaev_АвтосервисEntities2.GetContext().Service.Add(_currentServise);
+                Kollaev_АвтосервисEntities.GetContext().Service.Add(_currentServise);
 
             }
 
             try
             {
-                Kollaev_АвтосервисEntities2.GetContext().SaveChanges();
+                Kollaev_АвтосервисEntities.GetContext().SaveChanges();
                 MessageBox.Show("информация сохранена");
                 Manager.MainFrame.GoBack();
             }

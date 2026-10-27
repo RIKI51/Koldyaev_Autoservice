@@ -23,7 +23,7 @@ namespace Koldyaev_Autoservice
     {
         private void UpdateServices()
         {
-            var currentServices = Kollaev_АвтосервисEntities2.GetContext().Service.ToList();
+            var currentServices = Kollaev_АвтосервисEntities.GetContext().Service.ToList();
             if (!IsInitialized) return;
             
 
@@ -76,7 +76,7 @@ namespace Koldyaev_Autoservice
             UpdateServices();
             ComboType.SelectedIndex = 0;
          
-            var currentServise = Kollaev_АвтосервисEntities2.GetContext().Service.ToList();
+            var currentServise = Kollaev_АвтосервисEntities.GetContext().Service.ToList();
 
             ServiceListView.ItemsSource = currentServise;
 
@@ -218,7 +218,7 @@ namespace Koldyaev_Autoservice
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             var  currentService = (sender as Button).DataContext as Service;
-            var currentClientServices = Kollaev_АвтосервисEntities2.GetContext().ClientService.ToList();
+            var currentClientServices = Kollaev_АвтосервисEntities.GetContext().ClientService.ToList();
             currentClientServices = currentClientServices.Where(p => p.ServiceID == currentService.ID).ToList();
 
             if (currentClientServices.Count != 0)
@@ -229,10 +229,10 @@ namespace Koldyaev_Autoservice
                 {
                     try
                     {
-                        Kollaev_АвтосервисEntities2.GetContext().Service.Remove(currentService);
-                        Kollaev_АвтосервисEntities2.GetContext().SaveChanges();
+                        Kollaev_АвтосервисEntities.GetContext().Service.Remove(currentService);
+                        Kollaev_АвтосервисEntities.GetContext().SaveChanges();
 
-                        ServiceListView.ItemsSource = Kollaev_АвтосервисEntities2.GetContext().Service.ToList();
+                        ServiceListView.ItemsSource = Kollaev_АвтосервисEntities.GetContext().Service.ToList();
 
                         UpdateServices();
                     }
@@ -253,7 +253,7 @@ namespace Koldyaev_Autoservice
         {
             if (Visibility == Visibility.Visible)
             {
-                Kollaev_АвтосервисEntities2.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                Kollaev_АвтосервисEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
                 UpdateServices();
             }
         }
@@ -271,6 +271,11 @@ namespace Koldyaev_Autoservice
         private void RinghtDirButton_Click(object sender, RoutedEventArgs e)
         {
             ChangePage(2, null);
+        }
+
+        private void SignUpButton_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new SingUpPage((sender as Button).DataContext as Service));
         }
     }
 }

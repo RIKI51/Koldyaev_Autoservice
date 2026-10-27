@@ -13,22 +13,19 @@ namespace Koldyaev_Autoservice
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Kollaev_АвтосервисEntities2 : DbContext
+    public partial class Kollaev_АвтосервисEntities : DbContext
     {
-        private static Kollaev_АвтосервисEntities2 _context;
-
-        public static Kollaev_АвтосервисEntities2 GetContext()
+        private static Kollaev_АвтосервисEntities _context;
+        public static Kollaev_АвтосервисEntities GetContext()
         {
-            if (_context == null)
+            if(_context == null)
             {
-                _context = new Kollaev_АвтосервисEntities2();
+                _context = new Kollaev_АвтосервисEntities();
             }
-
             return _context;
         }
-
-        public Kollaev_АвтосервисEntities2()
-            : base("name=Kollaev_АвтосервисEntities2")
+        public Kollaev_АвтосервисEntities()
+            : base("name=Kollaev_АвтосервисEntities")
         {
         }
     

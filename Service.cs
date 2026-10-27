@@ -23,11 +23,11 @@ namespace Koldyaev_Autoservice
     
         public int ID { get; set; }
         public string Title { get; set; }
-        public string Description { get; set; }
-        public string DurationInSeconds { get; set; }
-        public decimal Cost { get; set; }
-        public Nullable<double> Discount { get; set; }
         public string MainImagePath { get; set; }
+        public int DurationInSeconds { get; set; }
+        public decimal Cost { get; set; }
+        public double Discount { get; set; }
+        public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ClientService> ClientService { get; set; }
