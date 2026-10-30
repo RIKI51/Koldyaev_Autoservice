@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -44,37 +45,52 @@ namespace Koldyaev_Autoservice
             {
                 errors.AppendLine("Укажите стоимость услуги");
             }
-            if (string.IsNullOrWhiteSpace(_currentServise.Discount.ToString())) 
+            if(_currentServise.DurationInSeconds > 240)
             {
-                errors.AppendLine("Укажите скидку");
+                errors.AppendLine("Длительность не может быть больше 240 минут");
+            }
+            if (_currentServise.Discount < 0 || _currentServise.Discount > 100) 
+            {
+                errors.AppendLine("Укажите скидку от 0 до 100");
             }
             if (_currentServise.DurationInSeconds == 0)
             {
                 errors.AppendLine("Укажите длительность услуги");
             }
+            
             if (errors.Length > 0)
             {
                 MessageBox.Show(errors.ToString());
                 return;
             }
 
-            if (_currentServise.ID == 0)
-            {
-                Kollaev_АвтосервисEntities.GetContext().Service.Add(_currentServise);
+            var allServices = Kollaev_АвтосервисEntities.GetContext().Service.ToList();
+            allServices = allServices.Where(p => p.Title == _currentServise.Title).ToList();
 
-            }
+            if (allServices.Count == 0)
+            {
 
-            try
-            {
-                Kollaev_АвтосервисEntities.GetContext().SaveChanges();
-                MessageBox.Show("информация сохранена");
-                Manager.MainFrame.GoBack();
+                if (_currentServise.ID == 0)
+                {
+                    Kollaev_АвтосервисEntities.GetContext().Service.Add(_currentServise);
+
+                }
+
+                try
+                {
+                    Kollaev_АвтосервисEntities.GetContext().SaveChanges();
+                    MessageBox.Show("информация сохранена");
+                    Manager.MainFrame.GoBack();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show("Уже существует такая услуга");
             }
-            
         }
     }
 }

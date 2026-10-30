@@ -33,15 +33,15 @@
         <TextBlock Text="Время начала:" FontSize="15" Grid.Column="0" Grid.Row="4"
            HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"></TextBlock>
 
-        <TextBox Grid.Column="1" Grid.Row="0" Height="30" FontSize="20"></TextBox>
-        <TextBox Grid.Column="1" Grid.Row="1" Height="30" Width="200" FontSize="20"
+        <TextBox Name="TBTitle" Text="{Binding Title}" IsEnabled="False" Grid.Column="1" Grid.Row="0" Height="30" FontSize="20"></TextBox>
+        <TextBox Text="{Binding DurationInSeconds}" IsEnabled="False" Grid.Column="1" Grid.Row="1" Height="30" Width="200" FontSize="20"
                  HorizontalAlignment="Left"></TextBox>
 
         <ComboBox Grid.Column="1" Grid.Row="2" Height="30" Width="300" FontSize="15"
-                 Name="ComboClient" HorizontalAlignment="Left">
+                 Name="ComboClient" HorizontalAlignment="Left" >
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>
+                    <StackPanel Orientation="Horizontal">
                         <Label Content="{Binding FirstName}"></Label>
                         <Label Content="{Binding LastName}"></Label>
                         <Label Content="{Binding Patronymic}"></Label>
@@ -54,9 +54,11 @@
                     Name="StartDate" HorizontalAlignment="Left"></DatePicker>
 
         <StackPanel Grid.Column="1" Grid.Row="4" Orientation="Horizontal">
-            <TextBox Name="TBStart" Height="30" Width="200" Text="{Binding Title}" IsEnabled="False" FontSize="20"></TextBox>
+            <TextBox Name="TBStart" Height="30" Width="200" FontSize="20"
+                     TextChanged="TBStart_TextChanged" PreviewTextInput="TBStart_PreviewTextInput" ></TextBox>
             <TextBlock Text="Время окончания:" FontSize="15" Height="30" Margin="20"></TextBlock>
-            <TextBox Name="TBEnd" Height="30" Width="200" Text="{Binding DurationInSeconds}" IsEnabled="False" FontSize="20"></TextBox>
+            <TextBox Name="TBEnd" Height="30" Width="200" IsEnabled="False" FontSize="20"></TextBox>
+        
         </StackPanel>
 
         <Button Name="SaveButton" Content="Сохранить" Grid.Row="5"
