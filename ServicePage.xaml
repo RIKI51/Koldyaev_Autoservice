@@ -104,8 +104,8 @@
                             <TextBlock Text=" мин." FontSize="20" Margin="5"></TextBlock>
                         </StackPanel>
                         
-                        <TextBlock Text="{Binding Discount, StringFormat=*скидка{0} % }"
-                                   Opacity="{Binding Discount}" Margin="5" Grid.Column="1"
+                        <TextBlock Text="{Binding DiscountFull, StringFormat=*скидка{0} % }"
+                                   Opacity="{Binding DiscountFull}" Margin="5" Grid.Column="1"
                                    Grid.Row="2" HorizontalAlignment="Left" FontSize="16"></TextBlock>
 
                         <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Horizontal">

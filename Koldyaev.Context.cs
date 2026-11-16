@@ -16,14 +16,16 @@ namespace Koldyaev_Autoservice
     public partial class Kollaev_АвтосервисEntities : DbContext
     {
         private static Kollaev_АвтосервисEntities _context;
+
         public static Kollaev_АвтосервисEntities GetContext()
         {
-            if(_context == null)
+            if (_context == null)
             {
                 _context = new Kollaev_АвтосервисEntities();
             }
             return _context;
         }
+
         public Kollaev_АвтосервисEntities()
             : base("name=Kollaev_АвтосервисEntities")
         {
@@ -46,5 +48,13 @@ namespace Koldyaev_Autoservice
         public virtual DbSet<ServicePhoto> ServicePhoto { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Tag> Tag { get; set; }
+    }
+
+    public partial class Kollaev_АвтосервисEntities1 : Kollaev_АвтосервисEntities
+    {
+        public Kollaev_АвтосервисEntities1()
+            : base()
+        {
+        }
     }
 }

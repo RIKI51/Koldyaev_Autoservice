@@ -11,8 +11,7 @@ namespace Koldyaev_Autoservice
 {
     using System;
     using System.Collections.Generic;
-    using System.Windows.Media;
-
+    
     public partial class Service
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -28,6 +27,16 @@ namespace Koldyaev_Autoservice
         public int DurationInSeconds { get; set; }
         public decimal Cost { get; set; }
         public double Discount { get; set; }
+
+        public double DiscountFull
+        {
+            get
+            {
+                return this.Discount * 100;
+            }
+        }
+
+
         public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -39,7 +48,7 @@ namespace Koldyaev_Autoservice
         {
             get
             {
-                if(Discount > 0)
+                if (Discount > 0)
                 {
                     return Cost.ToString();
                 }
@@ -53,31 +62,15 @@ namespace Koldyaev_Autoservice
         {
             get
             {
-                if(Discount > 0)
+                if (Discount > 0)
                 {
-                    return Math.Round((decimal)Cost - (decimal)Cost * (decimal)Discount/100, 2);
+                    return Math.Round((decimal)Cost - (decimal)Cost * (decimal)DiscountFull / 100, 2);
                 }
                 else
                 {
                     return (decimal)Cost;
                 }
             }
-        }
-
-        public SolidColorBrush FonStyle
-        {
-            get
-            {
-                if(Discount > 0)
-                {
-                    return (SolidColorBrush)new BrushConverter().ConvertFromString("LightGreen");
-                }
-                else
-                {
-                    return (SolidColorBrush)new BrushConverter().ConvertFromString("White");
-                }
-            }
-
         }
     }
 }
