@@ -11,7 +11,7 @@ namespace Koldyaev_Autoservice
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Windows.Media;
     public partial class Service
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -71,6 +71,22 @@ namespace Koldyaev_Autoservice
                     return (decimal)Cost;
                 }
             }
+        }
+
+        public SolidColorBrush FonStyle
+        {
+            get
+            {
+                if (Discount > 0)
+                {
+                    return (SolidColorBrush)new BrushConverter().ConvertFromString("LightGreen");
+                }
+                else
+                {
+                    return (SolidColorBrush)new BrushConverter().ConvertFromString("White");
+                }
+            }
+
         }
     }
 }
